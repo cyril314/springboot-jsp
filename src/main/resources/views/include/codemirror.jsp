@@ -1,0 +1,52 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+
+<!-- codemirror皮肤 -->
+<link rel="stylesheet" href="${ctx}/assets/theme/eclipse.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/erlang-dark.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/3024-day.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/3024-night.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/abcdef.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/ambiance.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/base16-dark.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/bespin.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/base16-light.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/blackboard.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/cobalt.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/colorforth.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/dracula.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/eclipse.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/elegant.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/erlang-dark.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/hopscotch.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/icecoder.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/isotope.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/lesser-dark.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/liquibyte.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/material.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/mbo.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/mdn-like.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/midnight.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/monokai.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/neat.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/neo.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/night.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/paraiso-dark.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/paraiso-light.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/pastel-on-dark.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/railscasts.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/rubyblue.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/seti.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/solarized.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/the-matrix.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/tomorrow-night-bright.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/tomorrow-night-eighties.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/ttcn.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/twilight.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/vibrant-ink.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/xq-dark.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/xq-light.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/yeti.css">
+<link rel="stylesheet" href="${ctx}/assets/theme/zenburn.css">

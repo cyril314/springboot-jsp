@@ -1,0 +1,32 @@
+server:
+  servlet:
+    context-path: /
+    session:
+      timeout: 200m
+  encoding:
+    enabled: true
+    charset: UTF-8
+    force: true
+  tomcat:
+    uri-encoding: UTF-8
+  jsp-servlet:
+    init-parameters:
+      development: true
+
+spring:
+  profiles:
+    active: '@profiles.active@'
+  http:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  thymeleaf:
+    enabled: false
+    cache: false
+  mvc:
+    view:
+      prefix: /views/
+      suffix: .jsp
+  devtools:
+    restart:
+      enabled: true

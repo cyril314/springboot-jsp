@@ -2,7 +2,7 @@
 <configuration>
 
     <!--定义日志存放的位置，默认存放在项目启动的相对路径的目录-->
-    <define name="LOG_HOME" class="com.fit.config.LogPathDefiner"/>
+    <define name="LOG_HOME" class="com.fit.common.log.LogPathDefiner"/>
 
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <!-- 开启后可以通过jmx动态控制日志级别(springboot Admin的功能) -->
@@ -45,7 +45,7 @@
     <!--注意：在 spring boot 中，想在控制台打印 mybatis 的 sql 语句，只需要配置下边这一句就好了。-->
     <!--如果想要记录更详细的 SQL 日志，只需要把下面的日志级别改成 TRACE 就可以了-->
     <!--即将 mapper 接口打入 logger 就行。-->
-    <logger name="com.fit.modular" level="DEBUG"></logger>
+    <logger name="com.fit.dao" level="DEBUG"></logger>
 
     <root level="info">
         <appender-ref ref="CONSOLE"/>

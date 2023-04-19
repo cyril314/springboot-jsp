@@ -1,4 +1,4 @@
-package com.fit.config;
+package com.fit.common.log;
 
 import ch.qos.logback.core.PropertyDefinerBase;
 import org.springframework.boot.system.ApplicationHome;

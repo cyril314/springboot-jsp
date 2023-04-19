@@ -20,6 +20,9 @@ import javax.servlet.http.HttpSession;
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
 
+    //不对匹配该值的访问路径拦截（正则）
+    public static final String NO_INTERCEPTOR_PATH = ".*/((login)|(logout)|(code)|(app)|(weixin)|(assets)|(main)|(websocket)).*";
+
     @Override
     public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
         return true;
@@ -27,11 +30,14 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest req, HttpServletResponse resp, Object handler, ModelAndView mav) throws Exception {
-        HttpSession session = req.getSession(true);
-        String username = (String) session.getAttribute(Constants.SESSION_USER_NAME);
-        if (StringUtil.isEmpty(username)) {
-            mav.setViewName("system/login");
-            req.setAttribute("message", "未登录或登录超时!");
+        String path = req.getServletPath();
+        if (!path.matches(NO_INTERCEPTOR_PATH)) {
+            HttpSession session = req.getSession(true);
+            String username = (String) session.getAttribute(Constants.SESSION_USER_NAME);
+            if (StringUtil.isEmpty(username)) {
+                mav = new ModelAndView("system/login");
+                mav.addObject("message", "未登录或登录超时!");
+            }
         }
     }
 

@@ -91,10 +91,7 @@ public class PermissionController extends BaseController {
         return map;
     }
 
-    @RequestMapping(
-            value = {"i/saveSearchHistory"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(value = {"i/saveSearchHistory"}, method = {RequestMethod.POST})
     @ResponseBody
     public String saveSearchHistory(HttpServletRequest request) {
         String id = request.getParameter("id");
@@ -112,10 +109,7 @@ public class PermissionController extends BaseController {
         return bool ? "success" : "fail";
     }
 
-    @RequestMapping(
-            value = {"i/deleteSearchHistory"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(value = {"i/deleteSearchHistory"}, method = {RequestMethod.POST})
     @ResponseBody
     public String deleteSearchHistory(@RequestBody TempDto tem, HttpServletRequest request) {
         String id = tem.getId();
@@ -127,10 +121,7 @@ public class PermissionController extends BaseController {
         return bool ? "success" : "fail";
     }
 
-    @RequestMapping(
-            value = {"i/selectSearchHistory"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/selectSearchHistory"}, method = {RequestMethod.GET})
     @ResponseBody
     public List<Map<String, Object>> selectSearchHistory() {
         List list = this.permissionService.selectSearchHistory();
@@ -149,26 +140,17 @@ public class PermissionController extends BaseController {
         return list2;
     }
 
-    @RequestMapping(
-            value = {"i/config"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/config"}, method = {RequestMethod.GET})
     public String config(Model model) {
         return "system/configList";
     }
 
-    @RequestMapping(
-            value = {"i/addConfigForm"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/addConfigForm"}, method = {RequestMethod.GET})
     public String addConfigForm(Model model) {
         return "system/configForm";
     }
 
-    @RequestMapping(
-            value = {"i/editConfigForm/{id}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/editConfigForm/{id}"}, method = {RequestMethod.GET})
     public String editConfigForm(@PathVariable("id") String id, Model model) {
         Object map = new HashMap();
 
@@ -182,10 +164,7 @@ public class PermissionController extends BaseController {
         return "system/configForm";
     }
 
-    @RequestMapping(
-            value = {"i/configUpdate"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(value = {"i/configUpdate"}, method = {RequestMethod.POST})
     @ResponseBody
     public Map<String, Object> configUpdate(@ModelAttribute @RequestBody Config config, Model model) {
         String databaseType = config.getDatabaseType();
@@ -228,26 +207,17 @@ public class PermissionController extends BaseController {
         return map;
     }
 
-    @RequestMapping(
-            value = {"i/changePass"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/changePass"}, method = {RequestMethod.GET})
     public String changePass(Model model) {
         return "system/changePass";
     }
 
-    @RequestMapping(
-            value = {"i/searchHistory"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/searchHistory"}, method = {RequestMethod.GET})
     public String searchHistory(Model model) {
         return "system/searchHistory";
     }
 
-    @RequestMapping(
-            value = {"i/changePassUpdate"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(value = {"i/changePassUpdate"}, method = {RequestMethod.POST})
     @ResponseBody
     public Map<String, Object> changePassUpdate(HttpServletRequest request) {
         String mess = "";
@@ -289,10 +259,7 @@ public class PermissionController extends BaseController {
         return map1;
     }
 
-    @RequestMapping(
-            value = {"i/addRow/{tableName}/{databaseName}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/addRow/{tableName}/{databaseName}"}, method = {RequestMethod.GET})
     public String addRows(@PathVariable("tableName") String tableName, @PathVariable("databaseName") String databaseName, HttpServletRequest request) throws Exception {
         List listAllColumn = this.permissionService.getTableColumns(databaseName, tableName);
         ArrayList listAllColumn2 = new ArrayList();
@@ -311,10 +278,7 @@ public class PermissionController extends BaseController {
         return "system/addRowOne";
     }
 
-    @RequestMapping(
-            value = {"i/saveRows"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(value = {"i/saveRows"}, method = {RequestMethod.POST})
     @ResponseBody
     public Map<String, Object> saveRows(HttpServletRequest request) {
         String databaseName = request.getParameter("databaseName");
@@ -360,11 +324,9 @@ public class PermissionController extends BaseController {
         return mapResult;
     }
 
-    @RequestMapping(
-            value = {"i/editRows/{tableName}/{databaseName}/{id}/{idValues}"},
-            method = {RequestMethod.GET}
-    )
-    public String editRows(@PathVariable("tableName") String tableName, @PathVariable("databaseName") String databaseName, @PathVariable("id") String id, @PathVariable("idValues") String idValues, HttpServletRequest request) {
+    @RequestMapping(value = {"i/editRows/{tableName}/{databaseName}/{id}/{idValues}"}, method = {RequestMethod.GET})
+    public String editRows(@PathVariable("tableName") String tableName, @PathVariable("databaseName") String databaseName,
+                           @PathVariable("id") String id, @PathVariable("idValues") String idValues, HttpServletRequest request) {
         List listAllColumn = this.permissionService.getOneRowById(databaseName, tableName, id, idValues);
         ArrayList newList = new ArrayList();
 
@@ -388,10 +350,7 @@ public class PermissionController extends BaseController {
         return "system/editRowOne";
     }
 
-    @RequestMapping(
-            value = {"i/updateRows"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(value = {"i/updateRows"}, method = {RequestMethod.POST})
     @ResponseBody
     public Map<String, Object> updateRows(HttpServletRequest request) {
         String mess = "";
@@ -476,26 +435,17 @@ public class PermissionController extends BaseController {
         }
     }
 
-    @RequestMapping(
-            value = {"i/contribute"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/contribute"}, method = {RequestMethod.GET})
     public String contribute(HttpServletRequest request) {
         return "system/contribute";
     }
 
-    @RequestMapping(
-            value = {"i/help"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/help"}, method = {RequestMethod.GET})
     public String help(HttpServletRequest request) {
         return "system/help";
     }
 
-    @RequestMapping(
-            value = {"i/testConn"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(value = {"i/testConn"}, method = {RequestMethod.POST})
     @ResponseBody
     public Map<String, Object> testConn(@RequestBody Config config) {
         HashMap mapResult = new HashMap();
@@ -528,29 +478,20 @@ public class PermissionController extends BaseController {
         return mapResult;
     }
 
-    @RequestMapping(
-            value = {"i/showTableData/{tableName}/{databaseName}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/showTableData/{tableName}/{databaseName}"}, method = {RequestMethod.GET})
     public String showTableData(@PathVariable("tableName") String tableName, @PathVariable("databaseName") String databaseName, HttpServletRequest request) {
         request.setAttribute("databaseName", databaseName);
         request.setAttribute("tableName", tableName);
         return "system/showTableData";
     }
 
-    @RequestMapping(
-            value = {"i/showResult/{sqlIndex}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/showResult/{sqlIndex}"}, method = {RequestMethod.GET})
     public String showResult(@PathVariable("sqlIndex") String sqlIndex, HttpServletRequest request) {
         request.setAttribute("sqlIndex", sqlIndex);
         return "system/showResult";
     }
 
-    @RequestMapping(
-            value = {"i/selectSqlStudy"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/selectSqlStudy"}, method = {RequestMethod.GET})
     @ResponseBody
     public List<Map<String, Object>> selectSqlStudy(HttpServletRequest request) throws Exception {
         new ArrayList();
@@ -558,10 +499,7 @@ public class PermissionController extends BaseController {
         return list;
     }
 
-    @RequestMapping(
-            value = {"i/updateRow/{tableName}/{databaseName}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/updateRow/{tableName}/{databaseName}"}, method = {RequestMethod.GET})
     public Map<String, Object> updateRow(@PathVariable("tableName") String tableName, @PathVariable("databaseName") String databaseName, HttpServletRequest request) {
         HashMap mapResult = new HashMap();
         String mess = "";
@@ -573,27 +511,18 @@ public class PermissionController extends BaseController {
         return mapResult;
     }
 
-    @RequestMapping(
-            value = {"i/jsonFormat"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/jsonFormat"}, method = {RequestMethod.GET})
     public String jsonFormat(HttpServletRequest request) throws Exception {
         return "system/jsonFormat";
     }
 
-    @RequestMapping(
-            value = {"i/backupDatabase/{databaseName}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/backupDatabase/{databaseName}"}, method = {RequestMethod.GET})
     public String backupDatabase(@PathVariable("databaseName") String databaseName, HttpServletRequest request) throws Exception {
         request.setAttribute("databaseName", databaseName);
         return "system/backupDatabase";
     }
 
-    @RequestMapping(
-            value = {"i/infoData/{databaseConfigId}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/infoData/{databaseConfigId}"}, method = {RequestMethod.GET})
     public String infoData(@PathVariable("databaseConfigId") String databaseConfigId, HttpServletRequest request) throws Exception {
         request.setAttribute("databaseConfigId", databaseConfigId);
         Map map = this.permissionService.getConfig(databaseConfigId);
@@ -604,20 +533,14 @@ public class PermissionController extends BaseController {
         return "system/infoData";
     }
 
-    @RequestMapping(
-            value = {"i/showNoSQLDBData/{NoSQLDbName}/{databaseConfigId}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/showNoSQLDBData/{NoSQLDbName}/{databaseConfigId}"}, method = {RequestMethod.GET})
     public String showNoSQLDBData(@PathVariable("NoSQLDbName") String NoSQLDbName, @PathVariable("databaseConfigId") String databaseConfigId, HttpServletRequest request) {
         request.setAttribute("databaseConfigId", databaseConfigId);
         request.setAttribute("NoSQLDbName", NoSQLDbName);
         return "system/showNoSQLDBData";
     }
 
-    @RequestMapping(
-            value = {"i/showNoSQLDBValue/{NoSQLDbName}/{databaseConfigId}/{selectKey}/{selectValue}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/showNoSQLDBValue/{NoSQLDbName}/{databaseConfigId}/{selectKey}/{selectValue}"}, method = {RequestMethod.GET})
     @ResponseBody
     public Map<String, Object> showNoSQLDBValue(@PathVariable("NoSQLDbName") String NoSQLDbName, @PathVariable("databaseConfigId") String databaseConfigId, @PathVariable("selectKey") String selectKey, @PathVariable("selectValue") String selectValue, HttpServletRequest request) {
         Page page = this.getPage(request);
@@ -650,10 +573,7 @@ public class PermissionController extends BaseController {
         }
     }
 
-    @RequestMapping(
-            value = {"i/deleteNoSQLKeys"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(value = {"i/deleteNoSQLKeys"}, method = {RequestMethod.POST})
     @ResponseBody
     public Map<String, Object> deleteNoSQLKeys(@RequestBody IdsDto tem) {
         String databaseName = tem.getDatabaseName();
@@ -687,20 +607,14 @@ public class PermissionController extends BaseController {
         return map;
     }
 
-    @RequestMapping(
-            value = {"i/addOrEditNotSql/{NoSQLDbName}/{databaseConfigId}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/addOrEditNotSql/{NoSQLDbName}/{databaseConfigId}"}, method = {RequestMethod.GET})
     public String addOrEditNotSql(@PathVariable("NoSQLDbName") String NoSQLDbName, @PathVariable("databaseConfigId") String databaseConfigId, HttpServletRequest request) {
         request.setAttribute("NoSQLDbName", NoSQLDbName);
         request.setAttribute("databaseConfigId", databaseConfigId);
         return "system/addNoSQLDBData";
     }
 
-    @RequestMapping(
-            value = {"i/editNotSqlData/{key}/{NoSQLDbName}/{databaseConfigId}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/editNotSqlData/{key}/{NoSQLDbName}/{databaseConfigId}"}, method = {RequestMethod.GET})
     public String editNotSqlData(@PathVariable("key") String key, @PathVariable("NoSQLDbName") String NoSQLDbName, @PathVariable("databaseConfigId") String databaseConfigId, Model model) {
         NotSqlEntity notSqlEntity = new NotSqlEntity();
 
@@ -720,10 +634,7 @@ public class PermissionController extends BaseController {
         return "system/addNoSQLDBData";
     }
 
-    @RequestMapping(
-            value = {"i/saveNotSqlData/{NoSQLDbName}/{databaseConfigId}"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(value = {"i/saveNotSqlData/{NoSQLDbName}/{databaseConfigId}"}, method = {RequestMethod.POST})
     @ResponseBody
     public Map<String, Object> saveNotSqlData(@ModelAttribute @RequestBody NotSqlEntity notSqlEntity, Model model, @PathVariable("NoSQLDbName") String NoSQLDbName, @PathVariable("databaseConfigId") String databaseConfigId) {
         String mess = "";
@@ -755,10 +666,7 @@ public class PermissionController extends BaseController {
         return map;
     }
 
-    @RequestMapping(
-            value = {"i/selectNoSQLDBStatus/{databaseConfigId}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/selectNoSQLDBStatus/{databaseConfigId}"}, method = {RequestMethod.GET})
     @ResponseBody
     public Map<String, Object> selectNoSQLDBStatus(@PathVariable("databaseConfigId") String databaseConfigId, HttpServletRequest request) {
         Page page = this.getPage(request);
@@ -792,18 +700,12 @@ public class PermissionController extends BaseController {
         return map;
     }
 
-    @RequestMapping(
-            value = {"i/showSQLMess"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/showSQLMess"}, method = {RequestMethod.GET})
     public String showSQLMess(HttpServletRequest request) {
         return "system/showSQLMess";
     }
 
-    @RequestMapping(
-            value = {"i/backupDatabaseData"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/backupDatabaseData"}, method = {RequestMethod.GET})
     @ResponseBody
     public Map<String, Object> backupDatabaseData(HttpServletRequest request) throws Exception {
         HashMap map = new HashMap();
@@ -815,10 +717,7 @@ public class PermissionController extends BaseController {
         return map;
     }
 
-    @RequestMapping(
-            value = {"i/configList"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/configList"}, method = {RequestMethod.GET})
     @ResponseBody
     public Map<String, Object> configList(HttpServletRequest request) throws Exception {
         Page page = this.getPage(request);
@@ -832,10 +731,7 @@ public class PermissionController extends BaseController {
         return this.getEasyUIData(page);
     }
 
-    @RequestMapping(
-            value = {"i/backupNotSqlDatabase"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(value = {"i/backupNotSqlDatabase"}, method = {RequestMethod.POST})
     @ResponseBody
     public Map<String, Object> backupNotSqlDatabase(@RequestBody IdsDto tem, HttpServletRequest request) {
         String databaseConfigId = tem.getDatabaseConfigId();
@@ -871,10 +767,7 @@ public class PermissionController extends BaseController {
         return mapResult;
     }
 
-    @RequestMapping(
-            value = {"i/deleteBackupFile"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(value = {"i/deleteBackupFile"}, method = {RequestMethod.POST})
     @ResponseBody
     public Map<String, Object> deleteBackupFile(@RequestBody IdsDto tem, HttpServletRequest request) {
         String[] ids = tem.getIds();
@@ -897,10 +790,7 @@ public class PermissionController extends BaseController {
         return map;
     }
 
-    @RequestMapping(
-            value = {"i/backupFileDownload/{fileName:.+}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"i/backupFileDownload/{fileName:.+}"}, method = {RequestMethod.GET})
     @ResponseBody
     public void backupFileDownload(@PathVariable("fileName") String fileName, HttpServletRequest request, HttpServletResponse response) {
         String path = request.getSession().getServletContext().getRealPath("/") + "backup\\";
@@ -930,10 +820,7 @@ public class PermissionController extends BaseController {
 
     }
 
-    @RequestMapping(
-            value = {"i/restoreDBForRedis"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(value = {"i/restoreDBForRedis"}, method = {RequestMethod.POST})
     @ResponseBody
     public Map<String, Object> restoreDBForRedis(@RequestBody IdsDto tem, HttpServletRequest request) {
         String path = request.getSession().getServletContext().getRealPath("/") + "backup\\";
@@ -1007,43 +894,34 @@ public class PermissionController extends BaseController {
     @RequestMapping({"i/getMemoryConsumption/{databaseConfigId}"})
     @ResponseBody
     public Map<String, Object> getMemoryConsumption(@PathVariable("databaseConfigId") String databaseConfigId) {
-        new ArrayList();
-        Object map = new HashMap();
+        Map<String, Object> map = new HashMap();
         String mess = "";
-        String status = "";
-
+        String status = "fail";
         try {
             if (Constants.DATABASE_TYPE.equals("Redis")) {
                 this.permissionService.getMemoryConsumptionForRedis(databaseConfigId);
             }
-
             if (Constants.DATABASE_TYPE.equals("Memcache")) {
                 map = this.permissionService.queryInfoItemForMemcached(databaseConfigId);
             }
-
             mess = "查询成功";
             status = "success";
         } catch (Exception var7) {
             mess = var7.getMessage();
-            status = "fail";
             return null;
         }
 
-        ((Map) map).put("mess", mess);
-        ((Map) map).put("status", status);
-        return (Map) map;
+        map.put("mess", mess);
+        map.put("status", status);
+        return map;
     }
 
-    @RequestMapping(
-            value = {"i/deleteConfig"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(value = {"i/deleteConfig"}, method = {RequestMethod.POST})
     @ResponseBody
     public Map<String, Object> deleteConfig(@RequestBody IdsDto tem, HttpServletRequest request) {
         String[] ids = tem.getIds();
         String mess = "";
         String status = "";
-
         try {
             this.permissionService.deleteConfig(ids);
             mess = "删除成功";

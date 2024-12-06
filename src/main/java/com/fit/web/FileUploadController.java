@@ -17,10 +17,7 @@ import java.util.Map;
 @RequestMapping({"system/fileUpload"})
 public class FileUploadController extends BaseController {
 
-    @RequestMapping(
-            value = {"i/fileUpload"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(value = {"i/fileUpload"}, method = {RequestMethod.POST})
     @ResponseBody
     public Map<String, Object> fileUpload(MultipartFile fileToUpload, HttpServletRequest request) throws Exception {
         String filename = fileToUpload.getOriginalFilename();

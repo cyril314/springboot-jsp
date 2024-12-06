@@ -1,16 +1,11 @@
 # 开发环境配置
 debug: true
 identifyingCode: 0
-server:
-  # 服务端口
-  port: 8080
-  tomcat:
-    # tomcat最大线程数，默认为200
-    max-threads: 200
-    # Tomcat启动初始化的线程数，默认值25
-    min-spare-threads: 20
 
 spring:
+  devtools:
+    restart:
+      enabled: true
   redis:
     host: 127.0.0.1
     port: 6379

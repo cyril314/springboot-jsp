@@ -16,9 +16,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeoutException;
 
 public class MemcachedUtil {
+
     private static String databaseType = "Memcache";
     private static String userName = "root";
-    private static String passwrod = "123456";
+    private static String passwd = "123456";
     private static String port = "11211";
     private static String ip = "127.0.0.1";
 
@@ -26,8 +27,6 @@ public class MemcachedUtil {
     }
 
     public static boolean testConnection(String databaseType2, String databaseName2, String ip2, String port2, String user2, String pass2) {
-        boolean bl = false;
-
         try {
             String e = "";
             if (databaseType2.equals("Memcache")) {
@@ -35,9 +34,8 @@ public class MemcachedUtil {
                 XMemcachedClientBuilder builder = new XMemcachedClientBuilder(AddrUtil.getAddresses(e));
                 MemcachedClient client = builder.build();
                 client.set("hello", 0, "welcome to use TreeNMS for memcache!");
-                bl = true;
                 client.shutdown();
-                return bl;
+                return true;
             } else {
                 return true;
             }
@@ -47,10 +45,9 @@ public class MemcachedUtil {
         }
     }
 
-    public boolean memcachedSet(NotSqlEntity notSqlEntity, String ip, String port, String password) throws Exception {
+    public boolean memcachedSet(NotSqlEntity notSqlEntity, String ip, String port, String passwd) throws Exception {
         XMemcachedClientBuilder builder = new XMemcachedClientBuilder(AddrUtil.getAddresses(ip + ":" + port), new int[]{1});
         MemcachedClient memcachedClient = null;
-
         try {
             memcachedClient = builder.build();
             memcachedClient.setOpTimeout(5000L);
@@ -121,17 +118,14 @@ public class MemcachedUtil {
                     e1 = notSqlEntity.getValuek();
                     var34 = notSqlEntity.getValuev();
                     hashmm = new HashMap();
-
                     for (i = e1.length; i > 0; --i) {
                         valuekkk = e1[i - 1].trim();
                         valuevvv = var34[i - 1].trim();
                         if (valuevvv == null) {
                             valuevvv = "";
                         }
-
                         hashmm.put(valuekkk, valuevvv);
                     }
-
                     memcachedClient.set(e, o1, hashmm);
                 }
 
@@ -139,17 +133,14 @@ public class MemcachedUtil {
                     e1 = notSqlEntity.getValuek();
                     var34 = notSqlEntity.getValuev();
                     hashmm = new HashMap();
-
                     for (i = e1.length; i > 0; --i) {
                         valuekkk = e1[i - 1].trim();
                         valuevvv = var34[i - 1].trim();
                         if (valuevvv == null) {
                             valuevvv = "";
                         }
-
                         hashmm.put(valuekkk, valuevvv);
                     }
-
                     memcachedClient.set(e, o1, hashmm);
                 }
             } catch (TimeoutException var28) {
@@ -170,19 +161,15 @@ public class MemcachedUtil {
                     var27.printStackTrace();
                 }
             }
-
         }
-
         return true;
     }
 
-    public boolean memcachedDelete(String cacheKey, String ip, String port, String password) throws Exception {
+    public boolean memcachedDelete(String cacheKey, String ip, String port, String passwd) throws Exception {
         XMemcachedClientBuilder builder = new XMemcachedClientBuilder(AddrUtil.getAddresses(ip + ":" + port), new int[]{1});
         MemcachedClient memcachedClient = null;
-
         try {
             memcachedClient = builder.build();
-
             try {
                 memcachedClient.delete(cacheKey);
             } catch (TimeoutException var19) {
@@ -203,15 +190,13 @@ public class MemcachedUtil {
                 }
             }
         }
-
         return true;
     }
 
-    public static String memcachedGet(String obj, String ip, String port, String password) throws Exception {
+    public static String memcachedGet(String obj, String ip, String port, String passwd) throws Exception {
         XMemcachedClientBuilder builder = new XMemcachedClientBuilder(AddrUtil.getAddresses(ip + ":" + port));
         MemcachedClient client = builder.build();
         String value = "";
-
         try {
             Object e = client.get(obj);
             if (e instanceof String) {
@@ -231,18 +216,16 @@ public class MemcachedUtil {
             System.err.println("MemcachedClient operation Exception");
             var11.printStackTrace();
         }
-
         try {
             client.shutdown();
         } catch (IOException var8) {
             System.err.println("Shutdown MemcachedClient fail");
             var8.printStackTrace();
         }
-
         return value;
     }
 
-    public static Map<String, Object> memcachedGet2(String key, String ip, String port, String password) throws Exception {
+    public static Map<String, Object> memcachedGet2(String key, String ip, String port, String passwd) throws Exception {
         HashMap map = new HashMap();
         XMemcachedClientBuilder builder = new XMemcachedClientBuilder(AddrUtil.getAddresses(ip + ":" + port));
         MemcachedClient client = builder.build();
@@ -278,7 +261,6 @@ public class MemcachedUtil {
                 type = "String";
                 value = e.toString();
             }
-
             map.put("key", key);
             map.put("type", type);
             map.put("value", value);
@@ -303,7 +285,7 @@ public class MemcachedUtil {
         return map;
     }
 
-    public static Map<String, Object> memcachedGet3(String key, String ip, String port, String password) throws Exception {
+    public static Map<String, Object> memcachedGet3(String key, String ip, String port, String passwd) throws Exception {
         HashMap map = new HashMap();
         XMemcachedClientBuilder builder = new XMemcachedClientBuilder(AddrUtil.getAddresses(ip + ":" + port));
         MemcachedClient client = builder.build();
@@ -353,11 +335,10 @@ public class MemcachedUtil {
         return map;
     }
 
-    public static Map<String, String> memcachedStatus(String ip, String port, String password) throws Exception {
+    public static Map<String, String> memcachedStatus(String ip, String port, String passwd) throws Exception {
         XMemcachedClientBuilder builder = new XMemcachedClientBuilder(AddrUtil.getAddresses(ip + ":" + port));
         MemcachedClient client = builder.build();
         Object result = new HashMap();
-
         try {
             InetSocketAddress e = new InetSocketAddress(ip, Integer.parseInt(port));
             result = client.stats(e);
@@ -370,18 +351,16 @@ public class MemcachedUtil {
         } catch (InterruptedException var10) {
             ;
         }
-
         try {
             client.shutdown();
         } catch (IOException var7) {
             System.err.println("Shutdown MemcachedClient fail");
             var7.printStackTrace();
         }
-
         return (Map) result;
     }
 
-    public static List<String> getAllDataBaseForMemcached(String ip, String port, String password) {
+    public static List<String> getAllDataBaseForMemcached(String ip, String port, String passwd) {
         ArrayList list = new ArrayList();
         ArrayList ids = new ArrayList();
         StringBuffer r = new StringBuffer();
@@ -428,7 +407,8 @@ public class MemcachedUtil {
         return list;
     }
 
-    public static Map<String, Object> getAllKeyAndValue(int pageSize, int limitFrom, String NoSQLDbName, String selectKey, String selectValue, String ip, String port, String password) {
+    public static Map<String, Object> getAllKeyAndValue(int pageSize, int limitFrom, String NoSQLDbName, String selectKey,
+                                                        String selectValue, String ip, String port, String passwd) {
         HashMap tempMap = new HashMap();
         ArrayList keyList = new ArrayList();
         ArrayList resultList = new ArrayList();
@@ -459,7 +439,7 @@ public class MemcachedUtil {
 
             for (int y = limitFrom; y < var22; ++y) {
                 String key = (String) keyList.get(y);
-                Map map2 = memcachedGet2(key, ip, port, password);
+                Map map2 = memcachedGet2(key, ip, port, passwd);
                 resultList.add(map2);
             }
 
@@ -475,7 +455,7 @@ public class MemcachedUtil {
         return tempMap;
     }
 
-    public static String allkeys(String host, int port) {
+    public static String all_keys(String host, int port) {
         ArrayList list = new ArrayList();
         StringBuffer r = new StringBuffer();
 

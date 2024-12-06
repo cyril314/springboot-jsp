@@ -1,32 +1,45 @@
 server:
+  port: 8080
   servlet:
     context-path: /
     session:
       timeout: 200m
-  encoding:
-    enabled: true
-    charset: UTF-8
-    force: true
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+    jsp:
+      init-parameters:
+        development: true
   tomcat:
     uri-encoding: UTF-8
-  jsp-servlet:
-    init-parameters:
-      development: true
+    threads:
+      # tomcat最大线程数，默认为200
+      max: 200
+      # Tomcat启动初始化的线程数，默认值10
+      min-spare: 20
 
 spring:
   profiles:
     active: '@profiles.active@'
-  http:
+  # 文件上传
+  servlet:
     multipart:
-      max-file-size: 100MB
-      max-request-size: 100MB
-  thymeleaf:
-    enabled: false
-    cache: false
+      max-file-size: 500MB
+      max-request-size: 500MB
+  web:
+    resources:
+      static-locations: [ classpath:/assets/,classpath:/static/ ]
   mvc:
     view:
       prefix: /views/
       suffix: .jsp
-  devtools:
-    restart:
-      enabled: true
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    format:
+      date: yyyy-MM-dd
+      time: HH:mm:ss
+      date-time: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    enabled: false
+    cache: false

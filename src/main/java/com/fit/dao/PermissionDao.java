@@ -311,7 +311,7 @@ public class PermissionDao {
         SqliteUtil db = new SqliteUtil();
         String id = config.getId();
         String sql = "";
-        String isdefault = config.getIsdefault();
+        String isdefault = config.getIsDefault();
         if (isdefault == null) {
             isdefault = "0";
         }

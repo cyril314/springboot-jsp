@@ -1,20 +1,27 @@
 package com.fit.common.interceptor;
 
+import com.fit.common.Constants;
+import com.fit.common.utils.StringUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * @className: ErrorInterceptor
- * @description: 错误拦截器
+ * @className: ActionInterceptor
+ * @description: 访问拦截器
  * @author: Aim
- * @date: 2023/4/12
+ * @date: 2023/4/13
  **/
 @Component
-public class ErrorInterceptor implements HandlerInterceptor {
+public class ActionInterceptor implements HandlerInterceptor {
+
+    //不对匹配该值的访问路径拦截（正则）
+    public static final String NO_INTERCEPTOR_PATH = ".*/((login)|(logout)|(code)|(app)|(weixin)|(assets)|(main)|(websocket)).*";
 
     /**
      * preHandle方法是进行处理器拦截用的，顾名思义，该方法将在Controller处理之前进行调用，SpringMVC中的Interceptor拦截器是链式的，可以同时存在
@@ -24,7 +31,7 @@ public class ErrorInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
-        return true;// 只有返回true才会继续向下执行，返回false取消当前请求
+        return true;
     }
 
     /**
@@ -37,6 +44,17 @@ public class ErrorInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest req, HttpServletResponse resp, Object handler, ModelAndView mav) throws Exception {
         switch (resp.getStatus()) {
+            case 200:
+                String path = req.getServletPath();
+                if (!path.matches(NO_INTERCEPTOR_PATH)) {
+                    HttpSession session = req.getSession(true);
+                    String username = (String) session.getAttribute(Constants.SESSION_USER_NAME);
+                    if (StringUtil.isEmpty(username)) {
+                        mav = new ModelAndView("system/login");
+                        mav.addObject("message", "未登录或登录超时!");
+                    }
+                }
+                break;
             case 500:
                 mav.setViewName("error/500");
                 break;

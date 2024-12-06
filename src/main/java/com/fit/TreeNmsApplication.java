@@ -26,7 +26,7 @@ public class TreeNmsApplication extends SpringBootServletInitializer {
         log.info("\n---------------------------------------------------------\n" +
                 "Application TreeNMS is running! Access URLs:\n\t" +
                 "Local: \t\thttp://localhost:" + port + "/\n\t" +
-                "External:\thttp://" + ip + ":" + port + "/" +
+                "External:\thttps://" + ip + ":" + port + "/" +
                 "\n-----------------页面请部署 admin-web----------------------");
     }
 

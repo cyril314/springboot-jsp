@@ -21,7 +21,7 @@ server:
 
 spring:
   profiles:
-    active: '@profiles.active@'
+    active: "@profiles.active@"
   # 文件上传
   servlet:
     multipart:
@@ -40,6 +40,9 @@ spring:
       date: yyyy-MM-dd
       time: HH:mm:ss
       date-time: yyyy-MM-dd HH:mm:ss
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:${user.dir}/TreeNms.db
   thymeleaf:
     enabled: false
     cache: false

@@ -146,13 +146,10 @@
                 </includes>
             </resource>
             <resource>
-                <!--源文件位置-->
                 <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-                <!--编译到META-INF/resources，该目录不能随便写-->
                 <targetPath>META-INF/resources</targetPath>
+                <filtering>true</filtering>
                 <includes>
-                    <!--要把哪些文件编译过去，**表示webapp目录及子目录，*.*表示所有-->
                     <include>**/*.*</include>
                 </includes>
                 <excludes>
